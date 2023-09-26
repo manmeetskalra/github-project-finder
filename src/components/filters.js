@@ -1,9 +1,16 @@
 import { Button, Flex, HStack, Menu, MenuButton, MenuItem, MenuList, Select, Icon } from '@chakra-ui/react'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import languages from '../data/languages.json'
 import { FaCalendar, FaList, FaTable } from 'react-icons/fa'
 import { CalendarIcon } from '@chakra-ui/icons'
-export function Filters() {
+export function Filters(props) {
+
+    const {onViewChange} = props
+    const[viewType, setViewType] = useState('grid')
+
+    useEffect(() => {
+        onViewChange(viewType)
+    })
   return (
     <HStack>
         <Select>
@@ -24,8 +31,8 @@ export function Filters() {
             </MenuList>
         </Menu>
         <HStack borderWidth={1} spacing={0} rounded='5px' ml='10px' alignItems='center'>
-            <Button leftIcon={<FaTable/>} bg='white' fontWeight={400} roundedRight={0}>Grid</Button>
-            <Button leftIcon={<FaList/>} bg='white' fontWeight={400} roundedLeft={0}>List</Button>
+            <Button leftIcon={<FaTable/>} bg={viewType==='grid' ? 'gray.200' : 'white'} fontWeight={400} roundedRight={0} onClick={()=>setViewType('Grid')}>Grid</Button>
+            <Button leftIcon={<FaList/>} bg={viewType==='list' ? 'gray.200' : 'white'} fontWeight={400} roundedLeft={0} onClick={()=>setViewType('List')}>List</Button>
         </HStack>
     </HStack>
   )
