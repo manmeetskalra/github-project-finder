@@ -19,7 +19,7 @@ export function Filters(props) {
     })
   return (
     <HStack>
-        <Select value={language} onChange={(e) => onLanguageChange(e.target.value)}>
+        <Select value={language} bg={'white'} onChange={(e) => onLanguageChange(e.target.value)}>
             {languages.map((language) => (
                 <option value={language.value}>{language.label}</option>
             ))}
@@ -30,15 +30,36 @@ export function Filters(props) {
             Weekly
             </MenuButton>
             <MenuList>
-                <MenuItem onChange={() => onDateChange('day')}>Daily</MenuItem>
-                <MenuItem onChange={() => onDateChange('week')}>Weekly</MenuItem>
-                <MenuItem onChange={() => onDateChange('month')}>Monthly</MenuItem>
-                <MenuItem onChange={() => onDateChange('year')}>Yearly</MenuItem>
+                <MenuItem onClick={() => onDateChange('day')}>Daily</MenuItem>
+                <MenuItem onClick={() => onDateChange('week')}>Weekly</MenuItem>
+                <MenuItem onClick={() => onDateChange('month')}>Monthly</MenuItem>
+                <MenuItem onClick={() => onDateChange('year')}>Yearly</MenuItem>
             </MenuList>
         </Menu>
-        <HStack borderWidth={1} spacing={0} rounded='5px' ml='10px' alignItems='center'>
-            <Button leftIcon={<FaTable/>} bg={viewType==='grid' ? 'gray.200' : 'white'} fontWeight={400} roundedRight={0} onClick={()=>onViewChange('Grid')}>Grid</Button>
-            <Button leftIcon={<FaList/>} bg={viewType==='list' ? 'gray.200' : 'white'} fontWeight={400} roundedLeft={0} onClick={()=>onViewChange('List')}>List</Button>
+        <HStack 
+        borderWidth={1} 
+        spacing={0} 
+        rounded='5px' 
+        ml='10px' 
+        alignItems='center'
+        >
+            <Button 
+                leftIcon={<FaTable/>} 
+                bg={viewType==='grid' ? 'gray.200' : 'white'} 
+                fontWeight={400} 
+                roundedRight={0} 
+                onClick={()=>onViewChange('grid')}>
+                Grid
+            </Button>
+            <Button 
+                leftIcon={<FaList/>} 
+                bg={viewType==='list' ? 'gray.200':'white'} 
+                fontWeight={400} 
+                roundedLeft={0} 
+                onClick={()=>onViewChange('list')}
+            >
+                List
+            </Button>
         </HStack>
     </HStack>
   )
